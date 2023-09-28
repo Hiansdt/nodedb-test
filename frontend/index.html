@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+
+<script>
+
+    async function fetchTodos() {
+        try {
+            const response = await fetch('http://localhost:3000/todos');
+            if (!response.ok) {
+                throw new Error('something went wrong');
+            }
+
+            const data = await response.json();
+            
+            for (todo of data.todos) {
+                document.write(JSON.stringify(todo.title) + '<br>');
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    fetchTodos();
+
+</script>
+</html>
